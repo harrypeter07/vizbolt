@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useMemo, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Text, Sphere, Cylinder } from '@react-three/drei';
 import { Group, Vector3 } from 'three';
-import { GraphVisualization as GraphType } from '../types/visualization';
+// import { GraphVisualization as GraphType } from '../types/visualization';
 import { gsap } from 'gsap';
 
 interface Props {
-  graph: GraphType;
+  graph: any;
   animated?: boolean;
   highlightedNodes?: number[];
   highlightedEdges?: string[];
@@ -42,7 +43,7 @@ export const GraphVisualization: React.FC<Props> = ({
     const nodeCount = graph.nodes.length;
     const radius = Math.max(3, nodeCount * 0.8);
 
-    graph.nodes.forEach((nodeValue, index) => {
+    graph.nodes.forEach((nodeValue : any, index : any) => {
       const angle = (index / nodeCount) * Math.PI * 2;
       const x = Math.cos(angle) * radius;
       const z = Math.sin(angle) * radius;

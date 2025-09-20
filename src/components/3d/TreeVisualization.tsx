@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useMemo, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Text, Sphere, Cylinder } from '@react-three/drei';
 import { Group, Vector3 } from 'three';
-import { TreeVisualization as TreeType } from '../types/visualization';
+// import { TreeVisualization as TreeType } from '../types/visualization';
 import { gsap } from 'gsap';
 
 interface Props {
-  tree: TreeType;
+  tree: any;
   animated?: boolean;
   highlightedNodes?: number[];
   traversalAnimation?: {

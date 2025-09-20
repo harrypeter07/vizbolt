@@ -158,54 +158,56 @@ export const ArrayVisualization: React.FC<Props> = ({
       });
 
       // Animate box 1 to position 2 with single smooth arc
-      tl.to(meshRefs.current[box1Index].position, {
-        x: pos1Target.x,
-        y: 1.2, // Arc height
-        z: 0.5,
-        duration: 1.0,
-        ease: "power2.out"
-      }, 0)
-      .to(meshRefs.current[box1Index].position, {
-        y: pos1Target.y,
-        z: pos1Target.z,
-        duration: 1.0,
-        ease: "power2.in"
-      }, 1.0)
-      .to(meshRefs.current[box1Index].rotation, {
-        y: Math.PI * 0.5,
-        duration: 1.0,
-        ease: "power2.inOut"
-      }, 0)
-      .to(meshRefs.current[box1Index].rotation, {
-        y: 0,
-        duration: 1.0,
-        ease: "power2.inOut"
-      }, 1.0);
+      if (meshRefs.current[box1Index] && meshRefs.current[box2Index]) {
+        tl.to(meshRefs.current[box1Index]!.position, {
+          x: pos1Target.x,
+          y: 1.2, // Arc height
+          z: 0.5,
+          duration: 1.0,
+          ease: "power2.out"
+        }, 0)
+        .to(meshRefs.current[box1Index]!.position, {
+          y: pos1Target.y,
+          z: pos1Target.z,
+          duration: 1.0,
+          ease: "power2.in"
+        }, 1.0)
+        .to(meshRefs.current[box1Index]!.rotation, {
+          y: Math.PI * 0.5,
+          duration: 1.0,
+          ease: "power2.inOut"
+        }, 0)
+        .to(meshRefs.current[box1Index]!.rotation, {
+          y: 0,
+          duration: 1.0,
+          ease: "power2.inOut"
+        }, 1.0);
 
-      // Animate box 2 to position 1 with single smooth arc
-      tl.to(meshRefs.current[box2Index].position, {
-        x: pos2Target.x,
-        y: 1.2, // Arc height
-        z: -0.5,
-        duration: 1.0,
-        ease: "power2.out"
-      }, 0)
-      .to(meshRefs.current[box2Index].position, {
-        y: pos2Target.y,
-        z: pos2Target.z,
-        duration: 1.0,
-        ease: "power2.in"
-      }, 1.0)
-      .to(meshRefs.current[box2Index].rotation, {
-        y: -Math.PI * 0.5,
-        duration: 1.0,
-        ease: "power2.inOut"
-      }, 0)
-      .to(meshRefs.current[box2Index].rotation, {
-        y: 0,
-        duration: 1.0,
-        ease: "power2.inOut"
-      }, 1.0);
+        // Animate box 2 to position 1 with single smooth arc
+        tl.to(meshRefs.current[box2Index]!.position, {
+          x: pos2Target.x,
+          y: 1.2, // Arc height
+          z: -0.5,
+          duration: 1.0,
+          ease: "power2.out"
+        }, 0)
+        .to(meshRefs.current[box2Index]!.position, {
+          y: pos2Target.y,
+          z: pos2Target.z,
+          duration: 1.0,
+          ease: "power2.in"
+        }, 1.0)
+        .to(meshRefs.current[box2Index]!.rotation, {
+          y: -Math.PI * 0.5,
+          duration: 1.0,
+          ease: "power2.inOut"
+        }, 0)
+        .to(meshRefs.current[box2Index]!.rotation, {
+          y: 0,
+          duration: 1.0,
+          ease: "power2.inOut"
+        }, 1.0);
+      }
     }
   }, [swapAnimation, elementPositions, isCurrentlySwapping, getBasePosition, lastSwapKey]);
 

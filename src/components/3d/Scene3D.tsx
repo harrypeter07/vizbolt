@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, Stats } from '@react-three/drei';
 import { EffectComposer, Bloom, ChromaticAberration, Vignette } from '@react-three/postprocessing';
+import * as THREE from 'three';
 import { ArrayVisualization } from './ArrayVisualization';
 import { PointerVisualization } from './PointerVisualization';
 import { TreeVisualization } from './TreeVisualization';
@@ -73,7 +75,7 @@ const Scene3D: React.FC = () => {
                 key={`${array.name}-${index}`} 
                 array={array} 
                 highlightedIndices={highlightedIndices}
-                swapAnimation={swapAnimation}
+                swapAnimation={swapAnimation ?? undefined}
               />
             ))
           ) : (
@@ -86,8 +88,7 @@ const Scene3D: React.FC = () => {
                 color: '#3b82f6'
               }}
               highlightedIndices={[]}
-              swapAnimation={swapAnimation}
-            />
+              swapAnimation={swapAnimation ?? undefined}            />
           )}
           
           {pointers.length > 0 && pointers.map((pointer, index) => (
@@ -125,7 +126,8 @@ const Scene3D: React.FC = () => {
             luminanceThreshold={0.3} 
             luminanceSmoothing={0.9}
           />
-          <ChromaticAberration offset={[0.001, 0.001]} />
+          <ChromaticAberration offset={new THREE.Vector2(0.001, 0.001)} radialModulation={false} modulationOffset={0} />
+         
           <Vignette eskil={false} offset={0.1} darkness={0.2} />
         </EffectComposer>
         

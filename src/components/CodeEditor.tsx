@@ -93,7 +93,11 @@ const CodeEditor: React.FC = () => {
       setTimeout(() => play(), 100);
     } else {
       // Normal play/pause
-      isPlaying ? pause() : play();
+      if (isPlaying) {
+        pause();
+      } else {
+        play();
+      }
     }
   };
 
